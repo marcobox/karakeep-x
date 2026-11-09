@@ -105,6 +105,11 @@ npm run icons   # re-render icons/ from tools/make-icons.mjs
 
 Requires Node ≥ 22.13. Written against Karakeep v0.34.1's API (`/api/v1`).
 
+## Publishing
+
+To make it installable for people you choose (Chrome Web Store private listing, or a self-hosted
+package installed by policy): [PUBLISHING.md](PUBLISHING.md).
+
 ## Licence
 
 MIT — see [LICENSE](LICENSE).

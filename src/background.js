@@ -12,10 +12,12 @@ const MAX_INLINE_BYTES = 40 * 1024 * 1024; // well under the server's MAX_ASSET_
 const IMAGE_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif']);
 
 function restrictStorage() {
+  // Older Chrome lacks it (content scripts could then read storage); the key is still never sent
+  // to one. It returns a promise, so a rejection is caught too.
   try {
-    chrome.storage.local.setAccessLevel({ accessLevel: 'TRUSTED_CONTEXTS' });
+    Promise.resolve(chrome.storage.local.setAccessLevel({ accessLevel: 'TRUSTED_CONTEXTS' })).catch(() => {});
   } catch {
-    /* older Chrome: content scripts could read it; the key is still never sent to one */
+    /* not a function */
   }
 }
 chrome.runtime.onInstalled.addListener(restrictStorage);
