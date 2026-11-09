@@ -1,0 +1,54 @@
+/* The save button, sized to sit in X's action bar and coloured from it (currentColor). */
+.kx-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 4px;
+}
+.kx-wrap.kx-orphan {
+  margin: 4px 0 0 56px;
+}
+.kx-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 34px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgb(113, 118, 123);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.kx-btn:hover {
+  background: rgba(29, 155, 240, 0.1);
+  color: rgb(29, 155, 240);
+}
+.kx-btn:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+.kx-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+.kx-btn[data-state='done'] {
+  color: rgb(0, 186, 124);
+}
+.kx-btn[data-state='warn'] {
+  color: rgb(255, 173, 31);
+}
+.kx-btn[data-state='error'] {
+  color: rgb(244, 33, 46);
+}
+.kx-open {
+  color: rgb(29, 155, 240);
+  font-size: 13px;
+  text-decoration: none;
+}
+.kx-open:hover {
+  text-decoration: underline;
+}

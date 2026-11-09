@@ -1,0 +1,50 @@
+<!--
+  SYNTHETIC fixture of a status page (/alice/status/2002), modelled on x.com's markup as of
+  2026-11 — not a captured page. The conversation: zed's post, then alice's thread 2001–2003 with
+  2002 the focal post (its time link sits at the bottom, as X renders the focal post), then a reply
+  by bob, then another alice post that is NOT part of the contiguous run.
+-->
+<html><body>
+<main><div data-testid="primaryColumn"><section><div>
+
+<div data-testid="cellInnerDiv"><article data-testid="tweet" role="article"><div>
+  <div data-testid="User-Name"><div><a href="/zed" role="link"><span>Zed</span></a></div><div><a href="/zed" role="link"><span>@zed</span></a><a href="/zed/status/2000"><time datetime="2026-11-06T07:00:00.000Z">Nov 6</time></a></div></div>
+  <div data-testid="tweetText" lang="en"><span>What do you think?</span></div>
+  <div role="group"></div>
+</div></article></div>
+
+<div data-testid="cellInnerDiv"><article data-testid="tweet" role="article"><div>
+  <div data-testid="User-Name"><div><a href="/Alice_A" role="link"><span>Alice</span></a></div><div><a href="/Alice_A" role="link"><span>@Alice_A</span></a><a href="/Alice_A/status/2001"><time datetime="2026-11-06T08:00:00.000Z">Nov 6</time></a></div></div>
+  <div data-testid="tweetText" lang="en"><span>1/ A thread.</span></div>
+  <div role="group"></div>
+</div></article></div>
+
+<div data-testid="cellInnerDiv"><article data-testid="tweet" role="article" id="focal"><div>
+  <div data-testid="User-Name"><div><a href="/Alice_A" role="link"><span>Alice</span></a></div><div><a href="/Alice_A" role="link"><span>@Alice_A</span></a></div></div>
+  <div data-testid="tweetText" lang="en"><span>2/ The middle post, in full.
+
+With a second paragraph.</span></div>
+  <div><a href="/Alice_A/status/2002" role="link"><time datetime="2026-11-06T08:01:00.000Z">8:01 AM · Nov 6, 2026</time></a></div>
+  <div role="group"></div>
+</div></article></div>
+
+<div data-testid="cellInnerDiv"><article data-testid="tweet" role="article"><div>
+  <div data-testid="User-Name"><div><a href="/alice_a" role="link"><span>Alice</span></a></div><div><a href="/alice_a" role="link"><span>@alice_a</span></a><a href="/alice_a/status/2003"><time datetime="2026-11-06T08:02:00.000Z">Nov 6</time></a></div></div>
+  <div data-testid="tweetText" lang="en"><span>3/ The end.</span></div>
+  <div role="group"></div>
+</div></article></div>
+
+<div data-testid="cellInnerDiv"><article data-testid="tweet" role="article"><div>
+  <div data-testid="User-Name"><div><a href="/bob" role="link"><span>Bob</span></a></div><div><a href="/bob" role="link"><span>@bob</span></a><a href="/bob/status/2004"><time datetime="2026-11-06T09:00:00.000Z">Nov 6</time></a></div></div>
+  <div data-testid="tweetText" lang="en"><span>Great thread</span></div>
+  <div role="group"></div>
+</div></article></div>
+
+<div data-testid="cellInnerDiv"><article data-testid="tweet" role="article"><div>
+  <div data-testid="User-Name"><div><a href="/Alice_A" role="link"><span>Alice</span></a></div><div><a href="/Alice_A" role="link"><span>@Alice_A</span></a><a href="/Alice_A/status/2005"><time datetime="2026-11-06T09:05:00.000Z">Nov 6</time></a></div></div>
+  <div data-testid="tweetText" lang="en"><span>thanks bob</span></div>
+  <div role="group"></div>
+</div></article></div>
+
+</div></section></div></main>
+</body></html>

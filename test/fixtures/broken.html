@@ -1,0 +1,26 @@
+<!--
+  SYNTHETIC fixture: posts as they would look after X moved a piece of markup the extension
+  relies on. Each must fail LOUDLY with a SelectorError naming the key, never save an empty post.
+-->
+<html><body>
+<main><div data-testid="primaryColumn">
+
+<!-- no User-Name block and no permalink: the author cannot be read -->
+<article data-testid="tweet" id="no-author"><div>
+  <div data-testid="tweetText" lang="en"><span>orphan text</span></div>
+</div></article>
+
+<!-- author present, but no time and no status link: the permalink cannot be read -->
+<article data-testid="tweet" id="no-permalink"><div>
+  <div data-testid="User-Name"><a href="/hank"><span>Hank</span></a><a href="/hank"><span>@hank</span></a></div>
+  <div data-testid="tweetText" lang="en"><span>where is my link</span></div>
+</div></article>
+
+<!-- author and permalink present, but the body moved: no text, media, card or quote -->
+<article data-testid="tweet" id="no-body"><div>
+  <div data-testid="User-Name"><a href="/ivy"><span>Ivy</span></a><a href="/ivy"><span>@ivy</span></a><a href="/ivy/status/3003"><time datetime="2026-11-07T00:00:00.000Z">Nov 7</time></a></div>
+  <div data-testid="tweetBodyRenamed"><span>text under a testid we do not know</span></div>
+</div></article>
+
+</div></main>
+</body></html>

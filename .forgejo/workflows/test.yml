@@ -1,0 +1,51 @@
+# The test suite, by machine on every push and PR: `npm test` (node:test + jsdom), then a package
+# build. Runs on the marcobox-net org's `host` runner, which ships node 22 (kubi images/ci-runner).
+#
+# ⚠ What a green tick here does NOT mean: the fixtures in test/fixtures/ are SYNTHETIC copies of
+# X's markup. Green says the code reads THOSE; whether X still renders that way is only learnt in a
+# browser (the button shows a selector error; a status page with no recognised post sets a red "!"
+# on the toolbar icon).
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: host
+    steps:
+      # A per-job HOME: on the host backend concurrent jobs share one container and one UID.
+      - name: Isolate HOME from concurrent jobs
+        run: echo "HOME=$(mktemp -d)" >> "$GITHUB_ENV"
+      # A plain clone, not actions/checkout. Keep the scheme from github.server_url: the runner
+      # reaches Forgejo over in-cluster plain http.
+      - name: Checkout
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -eu
+          url="${{ github.server_url }}"
+          git clone "${url%%://*}://x-access-token:${TOKEN}@${url#*://}/${{ github.repository }}.git" repo
+          cd repo
+          if [ "${{ github.event_name }}" = pull_request ]; then
+            git fetch -q origin "refs/pull/${{ github.event.pull_request.number }}/head"
+          fi
+          git checkout --detach "${{ github.sha }}"
+      - name: Node version (jsdom 29 needs >= 22.13)
+        working-directory: repo
+        run: |
+          set -eu
+          node --version
+          node -e 'const [a,b]=process.versions.node.split(".").map(Number); if (a<22 || (a===22 && b<13)) { console.error("node >= 22.13 required, runner has " + process.version); process.exit(1) }'
+      - name: Install (lockfile only)
+        working-directory: repo
+        run: npm ci --no-audit --no-fund
+      - name: Test
+        working-directory: repo
+        run: npm test
+      - name: Package
+        working-directory: repo
+        run: npm run package

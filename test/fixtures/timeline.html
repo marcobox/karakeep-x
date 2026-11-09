@@ -1,0 +1,81 @@
+<!--
+  SYNTHETIC fixture, modelled on x.com's rendered markup (data-testid structure) as of 2026-11 —
+  not a captured page. When selectors.js changes, refresh the affected article from a real page
+  (DevTools → the <article> → Copy outerHTML), strip the class soup, keep the testids and nesting.
+  Expected values are in test/extract.test.mjs.
+-->
+<html><body>
+<main><div data-testid="primaryColumn"><section><div>
+
+<!-- 1001: text with a mention, a shortened link, an emoji, a hashtag; two photos; a link card -->
+<div data-testid="cellInnerDiv"><article data-testid="tweet" role="article" tabindex="0"><div><div><div>
+  <div data-testid="Tweet-User-Avatar"><a href="/alice"><img src="https://pbs.twimg.com/profile_images/1/a_normal.jpg" alt=""></a></div>
+  <div>
+    <div data-testid="User-Name">
+      <div><a href="/alice" role="link"><div><span><span>Alice </span><img alt="🌱" src="https://abs-0.twimg.com/emoji/v2/svg/1f331.svg"></span></div></a></div>
+      <div><div><a href="/alice" role="link" tabindex="-1"><div><span>@alice</span></div></a></div><div><span>·</span></div><div><a href="/alice/status/1001" role="link"><time datetime="2026-11-01T10:00:00.000Z">Nov 1</time></a></div></div>
+    </div>
+    <div data-testid="tweetText" lang="en" dir="auto"><span>Hello </span><a href="/bob" role="link">@bob</a><span> look at </span><a href="https://t.co/abc" rel="noopener noreferrer nofollow" target="_blank" role="link"><span aria-hidden="true">https://</span>example.com/some/lo<span aria-hidden="true">ng/path</span><span aria-hidden="true">…</span></a><span>
+second line </span><img alt="🔥" src="https://abs-0.twimg.com/emoji/v2/svg/1f525.svg"><span> </span><a href="/hashtag/test?src=hashtag_click">#test</a></div>
+    <div><div data-testid="tweetPhoto"><img alt="A cat on a mat" src="https://pbs.twimg.com/media/AAA111?format=jpg&amp;name=small"></div><div data-testid="tweetPhoto"><img alt="Image" src="https://pbs.twimg.com/media/BBB222?format=png&amp;name=360x360"></div></div>
+    <div data-testid="card.wrapper"><a href="https://t.co/card1" role="link"><div><span>example.org</span><span>An article title</span></div></a></div>
+    <div role="group" aria-label="1 reply, 2 reposts"><div><button data-testid="reply"></button></div><div><button data-testid="retweet"></button></div><div><button data-testid="bookmark"></button></div></div>
+  </div>
+</div></div></div></article></div>
+
+<!-- 1002: a repost (social context) of a post quoting another; the quote has no permalink -->
+<div data-testid="cellInnerDiv"><article data-testid="tweet" role="article" tabindex="0"><div><div>
+  <div><span data-testid="socialContext">Carol reposted</span></div>
+  <div>
+    <div data-testid="User-Name">
+      <div><a href="/bob" role="link"><div><span><span>Bob</span></span></div></a></div>
+      <div><div><a href="/bob" role="link" tabindex="-1"><div><span>@bob</span></div></a></div><div><span>·</span></div><div><a href="/bob/status/1002" role="link"><time datetime="2026-11-02T08:30:00.000Z">Nov 2</time></a></div></div>
+    </div>
+    <div data-testid="tweetText" lang="en" dir="auto"><span>This, exactly.</span></div>
+    <div>
+      <div tabindex="0" role="link"><div>
+        <div data-testid="User-Name"><div><div><span><span>Dave</span></span></div></div><div><span>@dave</span><span>·</span><time datetime="2026-10-30T12:00:00.000Z">Oct 30</time></div></div>
+        <div data-testid="tweetText" lang="en" dir="auto"><span>The quoted words.</span></div>
+        <div data-testid="tweetPhoto"><img alt="Image" src="https://pbs.twimg.com/media/QQQ333?format=jpg&amp;name=small"></div>
+        <div role="group"><span>quote's own bar must not get the button</span></div>
+      </div></div>
+    </div>
+    <div role="group" aria-label="actions"><div><button data-testid="reply"></button></div><div><button data-testid="bookmark"></button></div></div>
+  </div>
+</div></div></article></div>
+
+<!-- 1003: a long post X truncated with a "Show more" LINK (navigates; cannot expand inline) -->
+<div data-testid="cellInnerDiv"><article data-testid="tweet" role="article" tabindex="0"><div><div><div>
+  <div data-testid="User-Name">
+    <div><a href="/erin" role="link"><div><span><span>Erin</span></span></div></a></div>
+    <div><div><a href="/erin" role="link" tabindex="-1"><div><span>@erin</span></div></a></div><div><a href="/erin/status/1003" role="link"><time datetime="2026-11-03T09:00:00.000Z">Nov 3</time></a></div></div>
+  </div>
+  <div data-testid="tweetText" lang="en" dir="auto"><span>The first part of a very long post that X cuts off in the timeline</span></div>
+  <a data-testid="tweet-text-show-more-link" href="/erin/status/1003" role="link">Show more</a>
+  <div role="group"><div><button data-testid="reply"></button></div></div>
+</div></div></div></article></div>
+
+<!-- 1004: a long post with an inline "Show more" BUTTON; the test wires the click to expand -->
+<div data-testid="cellInnerDiv"><article data-testid="tweet" role="article" tabindex="0" id="expandable"><div><div><div>
+  <div data-testid="User-Name">
+    <div><a href="/frank" role="link"><div><span><span>Frank</span></span></div></a></div>
+    <div><div><a href="/frank" role="link" tabindex="-1"><div><span>@frank</span></div></a></div><div><a href="/frank/status/1004" role="link"><time datetime="2026-11-04T09:00:00.000Z">Nov 4</time></a></div></div>
+  </div>
+  <div data-testid="tweetText" lang="en" dir="auto"><span>Start of the long one</span></div>
+  <button data-testid="tweet-text-show-more-link" type="button">Show more</button>
+  <div role="group"><div><button data-testid="reply"></button></div></div>
+</div></div></div></article></div>
+
+<!-- 1005: a video (blob stream) and a GIF (plain mp4), no text -->
+<div data-testid="cellInnerDiv"><article data-testid="tweet" role="article" tabindex="0"><div><div><div>
+  <div data-testid="User-Name">
+    <div><a href="/gina" role="link"><div><span><span>Gina</span></span></div></a></div>
+    <div><div><a href="/gina" role="link" tabindex="-1"><div><span>@gina</span></div></a></div><div><a href="/gina/status/1005" role="link"><time datetime="2026-11-05T09:00:00.000Z">Nov 5</time></a></div></div>
+  </div>
+  <div data-testid="videoPlayer"><div data-testid="videoComponent"><video poster="https://pbs.twimg.com/amplify_video_thumb/55/img/vid.jpg" src="blob:https://x.com/0b9e-uuid"></video></div></div>
+  <div data-testid="videoPlayer"><video poster="https://pbs.twimg.com/tweet_video_thumb/GIF1.jpg" src="https://video.twimg.com/tweet_video/GIF1.mp4"></video></div>
+  <div role="group"><div><button data-testid="reply"></button></div></div>
+</div></div></div></article></div>
+
+</div></section></div></main>
+</body></html>
