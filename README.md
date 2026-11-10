@@ -1,4 +1,6 @@
-# karakeep-x
+# Post Keeper for Karakeep (karakeep-x)
+
+*Unofficial: not made by, affiliated with or endorsed by X Corp. or the Karakeep project.*
 
 A Chrome / Brave extension that saves a post from your **logged-in** X tab to **your own
 [Karakeep](https://karakeep.app)** — full text (long posts included), author, time, images, video
@@ -41,7 +43,10 @@ language model reads but a person cannot see), counting them in the note.
 
 ## Install (Chrome or Brave, desktop)
 
-1. Get the code: `git clone https://git.home.marcobox.net/marcobox-net/karakeep-x.git`
+If you were invited to the Chrome Web Store listing, install it from the link you were given and
+skip to *Configure*. Otherwise, load it from source:
+
+1. Get the code: `git clone https://github.com/marcobox/karakeep-x.git`
    (or download the repository archive and unzip it). Keep the folder where it is — the extension's
    identity, and its saved settings, follow the folder's path.
 2. Open `chrome://extensions` (Brave: `brave://extensions`), turn on **Developer mode** (top right),

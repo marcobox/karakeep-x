@@ -1,9 +1,15 @@
 # AGENTS.md — karakeep-x
 
 A Manifest V3 browser extension (plain JS, no build step) that saves a post from the user's
-logged-in X tab to their Karakeep. Standalone repo in the `marcobox-net` Forgejo org — **not** an
-estate repo (not in `repos.yaml`); a push is not a deploy (users load it unpacked or from a package
-the owner publishes). Human docs: `README.md`.
+logged-in X tab to their Karakeep — listed as **Post Keeper for Karakeep**. Source of truth: the
+`marcobox-net/karakeep-x` Forgejo repo (standalone, **not** an estate repo); `main` is mirrored to
+the PUBLIC `github.com/marcobox/karakeep-x`, which hosts the privacy-policy URL. A push is not a
+deploy: users load it unpacked or install the Chrome Web Store build the owner uploads.
+Human docs: `README.md`; store: `PUBLISHING.md`, `STORE-LISTING.md`, `PRIVACY.md`.
+
+⚠ **Everything here is public** (the mirror): no internal hostnames, no estate paths, no secrets.
+⚠ **The note schema `karakeep-x/1` and the tag `source:karakeep-x` are a data contract** with saved
+bookmarks and the agents that read them; the display name may change, these may not.
 
 ## Rules
 
@@ -48,5 +54,7 @@ npm run package         # dist/karakeep-x-<version>.zip
 ## Releasing
 
 Bump `version` in **both** `manifest.json` and `package.json` (a test refuses a mismatch), `npm
-test`, commit, push. Unpacked users `git pull` and reload. A Chrome Web Store upload is the
-owner's action, with `dist/karakeep-x-<version>.zip`.
+test`, commit, push to Forgejo, then mirror: `git push github main` (remote
+`git@github.com:marcobox/karakeep-x.git`). Unpacked users `git pull` and reload. A Chrome Web Store
+upload is the owner's action, with `dist/karakeep-x-<version>.zip`; a privacy-relevant change also
+updates `PRIVACY.md` and the dashboard's Privacy tab (STORE-LISTING.md).

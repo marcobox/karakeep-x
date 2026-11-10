@@ -75,7 +75,7 @@ export class Karakeep {
     try {
       res = await this._fetch(url.toString(), { method, headers, body, credentials: 'omit', redirect: 'error' });
     } catch (e) {
-      throw new KarakeepError(`cannot reach ${this.origin} (${e && e.message ? e.message : 'network error'}) — on the home network or NetBird?`);
+      throw new KarakeepError(`cannot reach ${this.origin} (${e && e.message ? e.message : 'network error'}) — is the address right, and is the server reachable from this computer?`);
     }
     const text = await res.text();
     let data = null;

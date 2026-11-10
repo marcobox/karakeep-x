@@ -92,7 +92,7 @@ chrome.runtime.onMessage.addListener((msg, sender, reply) => {
     chrome.action.setBadgeBackgroundColor({ tabId: sender.tab.id, color: '#c62828' });
     chrome.action.setTitle({
       tabId: sender.tab.id,
-      title: msg.broken ? `karakeep-x: ${String(msg.detail).slice(0, 300)}` : 'karakeep-x — settings',
+      title: msg.broken ? `Post Keeper: ${String(msg.detail).slice(0, 300)}` : 'Post Keeper for Karakeep — settings',
     });
   }
   return false;

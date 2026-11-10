@@ -17,7 +17,7 @@ change.
 ## A. Load unpacked from git
 
 This is what the README describes. Access is controlled by who can read
-`marcobox-net/karakeep-x` on Forgejo (the repo is private). Nothing to publish.
+the repository it is cloned from. Nothing to publish.
 
 ## B. Chrome Web Store, Private visibility
 
@@ -76,17 +76,16 @@ and the [ExtensionInstallForcelist policy](https://chromeenterprise.google/polic
   the user cannot disable or remove it.
 - **A signing key**: `chrome --pack-extension=<dir>` creates `karakeep-x.crx` and a private key
   `.pem` the first time; every update must be signed with the **same** key (lose it and installed
-  copies can never update). It is a new secret: store it in OpenBao
-  (`estate bao put <mount/path> KEY`, entered interactively), **never in git** (`.gitignore` already
-  refuses `*.pem` and `*.crx`). Pack on `development`, reading the key from OpenBao into the pack
-  command, not onto disk longer than the pack takes.
+  copies can never update). It is a secret: keep it in a secret store,
+  **never in git** (`.gitignore` already refuses `*.pem` and `*.crx`), and put it on disk only for
+  as long as packing takes.
 - **The manifest** gains `"update_url": "https://<host>/karakeep-x/updates.xml"` (and, to keep the
   ID stable between unpacked and packed builds, the public `"key"`).
 - **The update server** serves `updates.xml` (`<gupdate>` → `<app appid=ID>` → `<updatecheck
   codebase=https://…/karakeep-x-<v>.crx version=<v>/>`) and the `.crx` as
   `application/x-chrome-extension`, **without** `X-Content-Type-Options: nosniff`. Browsers check
-  every few hours, without cookies. An internal host works while the laptop is at home or on
-  NetBird; away from both, the installed version keeps working and updates wait.
+  every few hours, without cookies. A host reachable only from your own network works; away from it, the installed version keeps
+  working and updates wait.
 - **The policy**: a JSON file, owned by root and not user-writable:
   - Chrome: `/etc/opt/chrome/policies/managed/karakeep-x.json`
   - Brave: `/etc/brave/policies/managed/karakeep-x.json`
