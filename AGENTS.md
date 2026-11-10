@@ -54,7 +54,7 @@ npm run package         # dist/karakeep-x-<version>.zip
 ## Releasing
 
 Bump `version` in **both** `manifest.json` and `package.json` (a test refuses a mismatch), `npm
-test`, commit, push to Forgejo, then mirror: `git push github main` (remote
-`git@github.com:marcobox/karakeep-x.git`). Unpacked users `git pull` and reload. A Chrome Web Store
+test`, commit, push to Forgejo, then mirror: `git -c credential.helper= -c 'credential.helper=!gh auth git-credential' push github
+main` (remote `https://github.com/marcobox/karakeep-x.git`; `development` has gh auth, no GitHub SSH key). Unpacked users `git pull` and reload. A Chrome Web Store
 upload is the owner's action, with `dist/karakeep-x-<version>.zip`; a privacy-relevant change also
 updates `PRIVACY.md` and the dashboard's Privacy tab (STORE-LISTING.md).
